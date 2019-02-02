@@ -33,11 +33,21 @@ regressor.fit(X_train, y_train)    #use the fit method to fit the training set
 y_pred = regressor.predict(X_test)
 
 """
-#Visualising the Trainin set Results! Woop!
+#Visualising the Training set Results! Woop!
 """
 plt.scatter(X_train, y_train, color = 'red') #real year vs salary
 plt.plot(X_train, regressor.predict(X_train), color = 'blue') #plotting the prediction line of the ML model
 plt.title('Salary Vs Experience (Training Set)')
+plt.xlabel('Years of Experience')
+plt.ylabel('Salary')
+plt.show()
+
+"""
+#Visualising the Test set Results! Woop!
+"""
+plt.scatter(X_test, y_test, color = 'red') #real year vs salary
+plt.plot(X_train, regressor.predict(X_train), color = 'blue') #plotting the prediction line of the ML model
+plt.title('Salary Vs Experience (Test Set)')
 plt.xlabel('Years of Experience')
 plt.ylabel('Salary')
 plt.show()
