@@ -49,14 +49,61 @@ regressor.fit(X_train, y_train) #apply the fit method of teh Multiple linear Reg
 y_pred = regressor.predict(X_test)
 
 """
-#Calculate the Average error margin for predicted results (ANT CODE)
+#Building the optimal model using Backward Elimination
 """
+import statsmodels.formula.api as sm    #import statsmodellibrary
+X = np.append(arr = np.ones((50,1)).astype(int), values = X, axis = 1) #add matrix of ones to X
 
-#error_margin = ((y_test[6] - y_pred[6]) / y_pred[6]) * 100
+#create the OPTIMAL matrix team that only contains high impact independnt variables
+X_opt = X[:, [0, 1, 2, 3, 4, 5]] 
+#grab the OLS (least squares) method
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+#use preiction to understand P value >SL or not.
+regressor_OLS.summary()
+"""
+#X2 had the highest Pvalue - 
+so remove this and repeat the proces of fitting the curve
+X2 dummy variable for state (location)
+"""
+X_opt = X[:, [0, 1, 3, 4, 5]] 
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary()
+"""
+#X1 Remove the X1 value (Other dummy State remaining variable)
+"""
+X_opt = X[:, [0, 3, 4, 5]] 
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary()
+"""
+#X1 Remove the X2 value (Which correlates to Administration)
+"""
+#This was 60% value essentially saying it hs no impact on the profit
+X_opt = X[:, [0, 3, 5]] 
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary()
+"""
+#X1 Remove the X2 value (Which correlates to Marketing SPend)
+"""
+#This was 60% value essentially saying it hs no impact on the profit
+X_opt = X[:, [0, 3,]] 
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary()
 
-for y_pred in y_pred:
-    print(y_pred)
-    
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Backward Elimination has indicated that  
+Marketing spend is the most significant independent variable
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+#Re-run prediction
+
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression() #Create object of linear regressoin class
+regressor.fit(X_train, y_train) #apply the fit method of teh Multiple linear Regression Algorythm to the training set
+"""
+#Predicting the Test Set Results
+"""
+y_pred = regressor.predict(X_test)
+
 
     
 
