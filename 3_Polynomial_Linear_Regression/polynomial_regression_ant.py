@@ -8,7 +8,7 @@ import pandas as pd
 """
 # Importing the dataset
 """
-dataset = pd.read_csv('Position_Salaries.csv')]
+dataset = pd.read_csv('Position_Salaries.csv')
 #using 1:2 means that X is now considered as a matrix rather than a vector
 #I>E MAtrix (10,0) and Y is a vector (10) just 10 rows.
 X = dataset.iloc[:, 1:2].values 
@@ -58,14 +58,23 @@ plt.show()
 # Visualise the Polynomial Linear Regression result
 """
 X_grid = np.arange(min(X), max(X), 0.1)
-X_grid = X_grid.reshape((len(X_grid), 1))#Make a matrix of 0.1 increments 90 columns improve accuracy
-plt.scatter(X, y, color = 'red') #Base results Level Vs Salary from Company
+X_grid = X_grid.reshape((len(X_grid), 1))
+plt.scatter(X, y, color = 'red') 
 plt.plot(X, lin_reg_2.predict(poly_reg.fit_transform(X)), color = 'blue')
 plt.title('Truth or Bluff (Linear Regression)')
 plt.xlabel('Position Level')
 plt.ylabel('Salary')
 plt.show()
 
+"""
+#Predict a new result with linear regression
+"""
+lin_reg.predict(np.array(6.5).reshape(1, -1))
+
+"""
+#Predict a new result with Polynomial linear regression
+"""
+lin_reg_2.predict(poly_reg.fit_transform(np.array(6.5).reshape(1, -1)))
 
 
 

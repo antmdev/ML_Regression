@@ -51,14 +51,15 @@ plt.show()
 """
 # Visualising the Regression result (For higher resolution of results)
 """
-X_grid = np.arange(min(X), max(X), 0.1)
-X_grid = X_grid.reshape((len(X_grid), 1))#Make a matrix of 0.1 increments 90 columns improve accuracy
+X_grid = np.arange(min(X), max(X), 0.1) #Makes a vector not a matrix, so we restructure below
+X_grid = X_grid.reshape((len(X_grid), 1)) #Make a matrix of 0.1 increments 90 columns improve accuracy
 plt.scatter(X, y, color = 'red') #Base results Level Vs Salary from Company
 plt.plot(X, regressor.preditct(X), color = 'blue')
 plt.title('Truth or Bluff (Regressino Model)')
 plt.xlabel('Position Level')
 plt.ylabel('Salary')
 plt.show()
+
 
 
 
